@@ -1,0 +1,15 @@
+provider "aws" {
+    region = "ap-south-1"
+}
+
+resource "aws_s3_bucket" "Terraform-S3" {
+    bucket = "s3-bucket-terraform-backend-09061993"
+    force_destroy = true
+}
+
+resource "aws_s3_bucket_versioning" "Terraform-s3-versioning" {
+  bucket = aws_s3_bucket.Terraform-S3.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
